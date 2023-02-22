@@ -35,7 +35,9 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             set
             {
                 _selectedCategoryModel = value;
-                NotifyOfPropertyChange(nameof(SelectedCategory));
+                NotifyOfPropertyChange(()=> SelectedCategory);
+                NotifyOfPropertyChange(() => CanEdit);
+                NotifyOfPropertyChange(() => CanDelete);
             }
         }
 
@@ -48,7 +50,8 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             set
             {
                 _categoryName = value;
-                NotifyOfPropertyChange(nameof(CategoryName));
+                NotifyOfPropertyChange(() => CategoryName);
+                NotifyOfPropertyChange(() => CanSave);
             }
         }
 
@@ -58,7 +61,7 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             set
             {
                 _categoryDescription = value;
-                NotifyOfPropertyChange(nameof(CategoryDescription));
+                NotifyOfPropertyChange(()=> CategoryDescription);
             }
         }
 
@@ -68,11 +71,27 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             CategoryList.Add(new CategoryModel {CategoryName="Meals", CategoryDescription="Lunches and Dinners"});
             CategoryList.Add(new CategoryModel { CategoryName = "Representation", CategoryDescription = "Gifts for our customers" });
         }
+        
+        public bool CanEdit
+        {
+            get
+            {
+                return SelectedCategory != null;
+            }
+        }
 
         public void Edit()
         {
             CategoryName = SelectedCategory.CategoryName;
             CategoryDescription = SelectedCategory.CategoryDescription;
+        }
+
+        public bool CanDelete
+        {
+            get
+            {
+                return SelectedCategory != null;
+            }
         }
 
         public void Delete()
@@ -81,6 +100,13 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             Clear();
         }
 
+        public bool CanSave
+        {
+            get
+            {
+                return CategoryName?.Length > 2;
+            }
+        }
         public void Save()
         {
             CategoryModel newCategory = new CategoryModel();
