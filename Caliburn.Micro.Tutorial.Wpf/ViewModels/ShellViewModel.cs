@@ -9,6 +9,13 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
 {
     public class ShellViewModel:Conductor<object>
     {
+        private readonly IWindowManager _windowManager;
+
+        public ShellViewModel(IWindowManager windowManager)
+        {
+            _windowManager = windowManager;
+        }
+
         protected async override void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
@@ -27,6 +34,11 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             {
                 return false;
             }
+        }
+
+        public Task About()
+        {
+            return _windowManager.ShowDialogAsync(IoC.Get<AboutViewModel>());
         }
     }
 }
