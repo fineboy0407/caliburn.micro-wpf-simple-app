@@ -19,6 +19,7 @@ namespace Caliburn.Micro.Tutorial.Wpf
         protected override async void OnStartup(object sender, StartupEventArgs e)
         {
             await DisplayRootViewForAsync(typeof(ShellViewModel));
+            LogManager.GetLog = type => new DebugLog(type);
         }
     }
 }
