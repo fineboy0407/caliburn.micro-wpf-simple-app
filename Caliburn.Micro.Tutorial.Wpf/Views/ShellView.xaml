@@ -5,7 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800">
-    <ContentControl x:Name="ActiveItem" Margin="20">
-        
-    </ContentControl>
+    <Menu>
+        <MenuItem x:Name="FileMenu" Header="File" IsEnabled="{Binding CanFileMenu}"/>
+        <MenuItem Header="Edit"/>
+        <MenuItem Header="Settings">
+            <MenuItem x:Name="EditCategories" Header="Edit Categories"/>
+        </MenuItem>
+        <MenuItem Header="Help">
+            <MenuItem Header="Manual"/>
+            <MenuItem x:Name="About" Header="About"/>
+        </MenuItem>
+    </Menu>
 </Window>

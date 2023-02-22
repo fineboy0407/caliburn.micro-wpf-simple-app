@@ -20,5 +20,13 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
             var viewmodel = IoC.Get<CategoryViewModel>();
             return ActivateItemAsync(viewmodel, new CancellationToken()); 
         }
+
+        public bool CanFileMenu
+        {
+            get
+            {
+                return false;
+            }
+        }
     }
 }
