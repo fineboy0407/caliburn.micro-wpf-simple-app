@@ -9,7 +9,7 @@ namespace Caliburn.Micro.Tutorial.Wpf.ViewModels
 {
     public class CategoryViewModel: Screen
     {
-        private BindableCollection<CategoryModel> _categoryList = new BindableCollection<CategoryViewModel>();
+        private BindableCollection<CategoryModel> _categoryList = new BindableCollection<CategoryModel>();
         private CategoryModel _selectedCategoryModel;
         private string _categoryName;
         private string _categoryDescription;
